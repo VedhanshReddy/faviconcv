@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Generator | WorksByCV</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="https://worksbycv.com" class="header-logo">WorksByCV</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon moon-icon"></i>
+                <i class="fas fa-sun sun-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Favicon Generator</h1>
+            <p class="subtitle">Create beautiful favicons from text, emojis, or images</p>
+        </div>
+
+        <div class="card input-card">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="text-input">Text</label>
+                    <div class="input-container">
+                        <input type="text" id="text-input" placeholder="Enter initials or text" maxlength="2">
+                        <button class="clear-btn" id="clear-text" title="Clear text">×</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="font-select">Font</label>
+                    <div class="input-container">
+                        <select id="font-select" class="font-select">
+                            <option value="Inter">Loading fonts...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-divider">
+                    <span class="divider-text">OR</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="emoji-picker-btn">Emoji</label>
+                    <div class="input-container">
+                        <button id="emoji-picker-btn" class="button emoji-btn" title="Open Emoji Picker">
+                            <span class="emoji-icon">Select an emoji</span>
+                            <span class="emoji-caret">▼</span>
+                        </button>
+                        <button class="clear-btn" id="clear-emoji" title="Clear emoji">×</button>
+                    </div>
+                </div>
+
+                <div class="input-divider">
+                    <span class="divider-text">OR</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="image-input">Image</label>
+                    <div class="input-container">
+                        <div class="custom-file-input">
+                            <input type="file" id="image-input" accept="image/*" class="hidden-input">
+                            <button class="file-button">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span class="button-text">Choose Image</span>
+                                <span class="file-name"></span>
+                            </button>
+                        </div>
+                        <button class="clear-btn" id="clear-image" title="Clear image">×</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="input-group">
+                    <label>Color</label>
+                    <div class="color-inputs">
+                        <div class="color-picker">
+                            <label for="background-color">Background</label>
+                            <input type="color" id="background-color" value="#ffffff">
+                        </div>
+                        <div class="color-picker">
+                            <label for="text-color">Text</label>
+                            <input type="color" id="text-color" value="#000000">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <h2>Preview</h2>
+                    <div class="preview-container">
+                        <canvas id="preview-16" width="16" height="16" title="16x16"></canvas>
+                        <canvas id="preview-32" width="32" height="32" title="32x32"></canvas>
+                        <canvas id="preview-48" width="48" height="48" title="48x48"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card download-card">
+            <h2>Download</h2>
+            <div class="button-group">
+                <button id="download-ico" class="button primary">Download .ico</button>
+                <button id="download-png" class="button">Download .png</button>
+            </div>
+            <br>
+            <div class="html-code">
+                <code id="html-tag">&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;</code>
+                <button class="button secondary" id="copy-button">
+                    <i class="fas fa-copy"></i>
+                    Copy HTML
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>Made with <i class="fas fa-heart"></i> by WorksByCV</p>
+            <p class="credits">
+                <a href="https://github.com/VedhanshReddy" target="_blank" rel="noopener">GitHub</a> •
+                <a href="https://worksbycv.com" target="_blank" rel="noopener">Portfolio</a> •
+                <a href="https://fontawesome.com" target="_blank" rel="noopener">Font Awesome</a>
+            </p>
+            <p class="small-text">© 2025 WorksByCV. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="emoji-modal hidden" aria-modal="true" role="dialog">
+        <div class="emoji-modal-overlay"></div>
+        <div class="emoji-picker">
+            <div class="emoji-picker-header">
+                <h3>Select Emoji</h3>
+                <button class="close-modal" aria-label="Close emoji picker">×</button>
+            </div>
+            <div class="emoji-categories-wrapper">
+                <button class="scroll-btn left hidden" id="scroll-left" aria-label="Scroll categories left">‹</button>
+                <div class="emoji-categories" id="emoji-categories" role="tablist"></div>
+                <button class="scroll-btn right hidden" id="scroll-right" aria-label="Scroll categories right">›</button>
+            </div>
+            <div id="emoji-picker" class="emoji-grid" role="tabpanel"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
